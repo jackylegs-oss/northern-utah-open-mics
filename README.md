@@ -3,7 +3,7 @@
 A directory of open mics — comedy, music, and poetry — in Logan, Ogden, and
 Salt Lake City, plus a weekly newsletter signup.
 
-**Live site:** _(fill in once GitHub Pages is switched on)_
+**Live site:** <https://jackylegs-oss.github.io/northern-utah-open-mics/>
 
 ## How it's built
 
