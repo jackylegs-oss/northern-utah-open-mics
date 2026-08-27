@@ -1,5 +1,7 @@
 # Northern Utah Open Mics — how it works
 
+**Live at <https://jackylegs-oss.github.io/northern-utah-open-mics/>**
+
 A directory of open mics, plus a newsletter signup. No framework, no build
 step, no server. Three files do everything.
 
@@ -167,3 +169,28 @@ from outside, so it always looked like Substack instead of like this site.
 - `test-data.csv` — deliberately messy rows used to test edge cases.
 
 Neither is part of the working site.
+
+
+---
+
+## Publishing changes
+
+The listings are **not** in the code, so adding or editing a mic needs no
+deploy at all — edit the sheet, wait up to five minutes, refresh.
+
+You only need the steps below if you change `index.html`, `style.css`, or
+`directory.js`. From this folder:
+
+```bash
+git add -A && git commit -m "what you changed" && git push
+```
+
+GitHub rebuilds the site within about a minute. Remember to bump both `?v=`
+numbers in `index.html` first, or browsers will keep running the old copy.
+
+### Where things live
+
+- **Code:** <https://github.com/jackylegs-oss/northern-utah-open-mics>
+- **Live site:** <https://jackylegs-oss.github.io/northern-utah-open-mics/>
+- **Listings sheet:** your Google Drive, "Open Mic Listings"
+- **Newsletter:** <https://jackylegs.substack.com>
