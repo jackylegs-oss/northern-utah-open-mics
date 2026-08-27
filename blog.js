@@ -25,7 +25,7 @@
 
 /* The Posts tab of your sheet, published as CSV. Same File >
    Share > Publish to web as the listings, but pick the Posts tab. */
-var POSTS_URL = "";
+var POSTS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTUCVYNdj4mfOLR2askibiTv49xPDzJVUOuWyJWGjw1EdUIaO9OqQkWnL6rPbccajHJPuRUKfa96dU_/pub?gid=0&single=true&output=csv";
 
 
 /* ============================================================

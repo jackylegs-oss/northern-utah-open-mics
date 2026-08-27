@@ -96,12 +96,18 @@ Trailing spaces are trimmed.
 
 ## Settings you might edit
 
-All three sit together at the top of `directory.js`, under `SETTINGS`.
+Three sit at the top of `directory.js`, under `SETTINGS`:
 
 ```js
 var SHEET_URL     = "https://docs.google.com/.../output=csv";
 var SUBSTACK      = "jackylegs";
 var CONTACT_EMAIL = "";
+```
+
+and one at the top of `blog.js`:
+
+```js
+var POSTS_URL     = "https://docs.google.com/.../output=csv";
 ```
 
 - **`SHEET_URL`** — the published sheet. Only changes if you republish and
@@ -113,6 +119,7 @@ var CONTACT_EMAIL = "";
   are hand-checked." Put an address in and it gains a "Tell me" link. Anything
   published there can be harvested by spammers, so use an address you don't
   mind being public.
+- **`POSTS_URL`** — the published Posts sheet. Already set.
 
 ### After editing any code file
 
@@ -206,11 +213,14 @@ carry across on their own with nothing special required.
 Same forgiving rule as the mics: only `Draft`, `No`, `False`, `Hidden`, or `Off`
 hides a post. Anything else publishes it.
 
-### Setting it up (once)
+### Already set up
 
-Make the sheet, publish that tab as CSV, and paste the address into
-`POSTS_URL` at the top of `blog.js`. Until that's filled in, the blog page
-politely says it isn't switched on yet.
+The Posts sheet is made, published, and wired in. Add a row and it appears —
+nothing else to configure.
+
+One tidy-up worth doing: the `Title` header in that sheet has a stray space
+after it. The code trims header names so it works fine either way, but it's
+cleaner without.
 
 ### Why your site doesn't just show the Google Doc
 
