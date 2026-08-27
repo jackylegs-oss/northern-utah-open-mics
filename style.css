@@ -89,6 +89,29 @@ a { color: var(--accent); }
   font-size: 1.05rem;
 }
 
+/* The Open mics / Blog links under the tagline. */
+.site-nav {
+  display: flex;
+  gap: 20px;
+  margin-top: 18px;
+}
+
+.site-nav a {
+  font-size: .95rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding-bottom: 3px;
+  border-bottom: 2px solid transparent;
+}
+
+.site-nav a:hover { border-bottom-color: var(--line); }
+
+/* The page you are already on. */
+.site-nav a[aria-current="page"] {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
 /* ---- 4. NEWSLETTER BOX ------------------------------------- */
 .newsletter {
   background: var(--card);
@@ -327,6 +350,142 @@ a { color: var(--accent); }
 .tag-type.type-mixed  { background: var(--mixed-bg);  color: var(--mixed-ink);  }
 .tag-type.type-music  { background: var(--music-bg);  color: var(--music-ink);  }
 .tag-type.type-other  { background: var(--ink-soft);  color: var(--paper);      }
+
+/* ---- 6c. BLOG ----------------------------------------------
+   The list of posts, and a post itself. The post body is Google
+   Doc content that has had all of Google's styling stripped off,
+   so everything below decides how it actually looks.
+   ------------------------------------------------------------ */
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.post-card {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.post-card:first-child { padding-top: 4px; }
+
+.post-date {
+  margin: 0 0 4px;
+  font-size: .78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--accent);
+}
+
+.post-card-title {
+  margin: 0 0 6px;
+  font-size: 1.3rem;
+  line-height: 1.25;
+}
+
+.post-card-title a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.post-card-title a:hover { color: var(--accent); }
+
+.post-summary {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: .95rem;
+}
+
+/* One post. */
+.post-title {
+  margin: 0 0 24px;
+  font-size: 1.9rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* Reading width: comfortably narrower than the mic cards, because
+   long lines of prose are hard to follow. */
+.post-body {
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.post-body h1,
+.post-body h2 { margin: 32px 0 10px; font-size: 1.35rem; line-height: 1.25; }
+.post-body h3 { margin: 28px 0 8px;  font-size: 1.15rem; }
+
+.post-body p { margin: 0 0 18px; }
+
+.post-body ul,
+.post-body ol { margin: 0 0 18px; padding-left: 24px; }
+
+.post-body li { margin-bottom: 6px; }
+
+.post-body blockquote {
+  margin: 0 0 18px;
+  padding-left: 16px;
+  border-left: 3px solid var(--line);
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+.post-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 8px 0 18px;
+}
+
+.post-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 18px;
+  font-size: .95rem;
+}
+
+.post-body th,
+.post-body td {
+  border: 1px solid var(--line);
+  padding: 7px 10px;
+  text-align: left;
+}
+
+.post-back {
+  margin: 40px 0 0;
+  font-size: .92rem;
+}
+
+/* The "latest from the blog" strip under the listings. */
+.latest-post {
+  margin: 36px 0 0;
+  padding: 20px 24px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.latest-label {
+  margin: 0 0 4px;
+  font-size: .78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--accent);
+}
+
+.latest-title {
+  margin: 0 0 6px;
+  font-size: 1.2rem;
+  line-height: 1.25;
+}
+
+.latest-title a { color: var(--ink); text-decoration: none; }
+.latest-title a:hover { color: var(--accent); }
+
+.latest-more { margin: 10px 0 0; font-size: .9rem; }
 
 /* ---- 7. MESSAGES IN PLACE OF CARDS -------------------------
    Shown while loading, when the sheet is empty, or when the

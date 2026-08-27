@@ -1,0 +1,5 @@
+Title,Date,Slug,DocURL,Summary,Status
+My First Test Post,2026-08-26,my-first-test-post,https://docs.google.com/document/d/e/2PACX-1vQFr-Xr4V_s0P4R4psna0emiJHSdO2eyhswjBuERNvxmJPILAbduhSBe5l8c_BoHHZ92WXVR_9fmJ3s/pub,A short post to prove the pipeline works end to end.,Published
+An Older Post,2026-07-04,an-older-post,https://docs.google.com/document/d/e/2PACX-1vQFr-Xr4V_s0P4R4psna0emiJHSdO2eyhswjBuERNvxmJPILAbduhSBe5l8c_BoHHZ92WXVR_9fmJ3s/pub,"Should sort BELOW the newer one, even though it is listed first.",Published
+A Draft Nobody Should See,2026-08-27,secret-draft,https://docs.google.com/document/d/e/2PACX-1vQFr-Xr4V_s0P4R4psna0emiJHSdO2eyhswjBuERNvxmJPILAbduhSBe5l8c_BoHHZ92WXVR_9fmJ3s/pub,Status is Draft - must NOT appear.,Draft
+Broken Doc Link,2026-06-01,broken-doc,,This row has no DocURL - should explain itself politely.,Published

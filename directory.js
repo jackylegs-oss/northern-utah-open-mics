@@ -165,29 +165,35 @@ function clearError(box, input) {
    GOING AND GETTING THE SHEET
    ============================================================ */
 
-/* The "?t=" on the end is a throwaway number that changes every time
-   the page loads. Without it a browser will happily show a copy of the
-   sheet it downloaded hours ago. Google still holds its own copy for
-   about 5 minutes, so an edit takes up to that long to show up here. */
-fetch(SHEET_URL + "&t=" + Date.now())
-  .then(function (response) {
-    if (!response.ok) {
-      throw new Error("Google said " + response.status);
-    }
-    return response.text();
-  })
-  .then(function (csvText) {
-    var mics = parseCsv(csvText);
-    showMics(mics);
-  })
-  .catch(function (error) {
-    console.error("Could not load the sheet:", error);
-    showMessage(
-      "Couldn't load the listings right now.",
-      "The schedule lives in a Google Sheet and it didn't answer. " +
-      "Try refreshing in a minute."
-    );
-  });
+/* Only the mics page has a listings box. The blog pages load this
+   file too - for the newsletter form and the shared helpers below -
+   so skip the download when there is nothing to fill in. */
+if (listingsBox) loadTheSheet();
+
+function loadTheSheet() {
+  /* The "?t=" on the end is a throwaway number that changes every time
+     the page loads. Without it a browser will happily show a copy of the
+     sheet it downloaded hours ago. Google still holds its own copy for
+     about 5 minutes, so an edit takes up to that long to show up here. */
+  fetch(SHEET_URL + "&t=" + Date.now())
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error("Google said " + response.status);
+      }
+      return response.text();
+    })
+    .then(function (csvText) {
+      showMics(parseCsv(csvText));
+    })
+    .catch(function (error) {
+      console.error("Could not load the sheet:", error);
+      showMessage(
+        "Couldn't load the listings right now.",
+        "The schedule lives in a Google Sheet and it didn't answer. " +
+        "Try refreshing in a minute."
+      );
+    });
+}
 
 
 /* ============================================================

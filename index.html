@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Northern Utah Open Mics</title>
   <meta name="description" content="A directory of open mics — comedy, music, and poetry — in Logan, Ogden, and Salt Lake City, Utah.">
-  <link rel="stylesheet" href="style.css?v=12">
+  <link rel="stylesheet" href="style.css?v=13">
 </head>
 <body>
 
@@ -16,6 +16,10 @@
     <div class="wrap">
       <h1 class="site-title">Northern Utah Open Mics</h1>
       <p class="site-tagline">Every open mic from Logan to Salt Lake, in one place.</p>
+      <nav class="site-nav" aria-label="Main">
+        <a href="index.html" aria-current="page">Open mics</a>
+        <a href="blog.html">Blog</a>
+      </nav>
     </div>
   </header>
 
@@ -93,6 +97,10 @@
       <p class="notice-detail">Loading listings&hellip;</p>
     </section>
 
+    <!-- The newest blog post, if there is one. blog.js fills this in
+         and leaves it hidden when there are no posts yet. -->
+    <section class="latest-post" id="latest-post" hidden></section>
+
     <p class="verified-note" id="verified-note">
       All listings are hand-checked.
     </p>
@@ -109,7 +117,9 @@
        directory.js. Changing this number is what forces them to fetch a
        fresh one. If you edit either file and the site doesn't change,
        bump BOTH numbers to the same next number (here and line 8). -->
-  <script src="directory.js?v=12"></script>
+  <script src="vendor/purify.min.js"></script>
+  <script src="directory.js?v=13"></script>
+  <script src="blog.js?v=13"></script>
 
 </body>
 </html>

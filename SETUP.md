@@ -9,7 +9,10 @@ step, no server. Three files do everything.
 |---|---|
 | `index.html` | The page itself — the words and the structure |
 | `style.css` | Every colour, font, and spacing decision |
-| `directory.js` | The only code. Loads the sheet, draws the cards, runs the filters and the signup form |
+| `directory.js` | Loads the listings sheet, draws the cards, runs the filters and the signup form |
+| `blog.html` / `post.html` | The blog: all posts, and one post |
+| `blog.js` | Loads the Posts sheet and turns Google Docs into clean web pages |
+| `vendor/` | One borrowed library (DOMPurify) that strips anything dangerous out of post content. Never edit this. |
 
 The listings live in a **Google Sheet**, not in any of these files. The page
 downloads it fresh every time someone visits. Edit the sheet, refresh the site,
@@ -163,10 +166,73 @@ from outside, so it always looked like Substack instead of like this site.
 
 ---
 
+## The blog
+
+Posts are written in **Google Docs**. A second sheet lists them.
+
+### Writing a post
+
+1. Write it in a normal Google Doc.
+2. **File → Share → Publish to web → Publish.** Copy the link.
+3. Add a row to the **Posts** sheet with the title, the date, and that link.
+4. Wait up to five minutes, refresh. It's live.
+
+That's it — no code, no git, no uploading.
+
+### The one habit to learn
+
+**Use the style dropdown for headings.** It's the box in the toolbar that says
+"Normal text". Pick **Heading 1** or **Heading 2** for your headings.
+
+Do *not* make a heading by just enlarging or bolding the text. Google only
+marks it as a real heading when you use that dropdown, and the site can only
+show it as a heading if Google marked it as one. Bold text and a heading look
+similar in the Doc but are completely different underneath.
+
+Bold, italic, bulleted lists, numbered lists, links, images, and tables all
+carry across on their own with nothing special required.
+
+### What the Posts sheet needs
+
+| Column | What goes in it | Example |
+|---|---|---|
+| `Title` | Post title, shown on the site | What I learned bombing at Wiseguys |
+| `Date` | Publication date | 2026-08-26 |
+| `Slug` | The web address bit. Leave blank and it's made from the title. | bombing-at-wiseguys |
+| `DocURL` | The published Google Doc link, ending in `/pub` | https://docs.google.com/… |
+| `Summary` | One or two lines shown in the post list | — |
+| `Status` | `Published`, or `Draft` to hide it | Published |
+
+Same forgiving rule as the mics: only `Draft`, `No`, `False`, `Hidden`, or `Off`
+hides a post. Anything else publishes it.
+
+### Setting it up (once)
+
+Make the sheet, publish that tab as CSV, and paste the address into
+`POSTS_URL` at the top of `blog.js`. Until that's filled in, the blog page
+politely says it isn't switched on yet.
+
+### Why your site doesn't just show the Google Doc
+
+A published Doc comes wrapped in Google's own fonts, colours and spacing, and
+would look nothing like the rest of the site. So `blog.js` throws all of that
+away and keeps only the meaning — headings, bold, italic, lists, links — and
+`style.css` decides how it looks.
+
+The awkward part it handles for you: Google doesn't write `<strong>` for bold.
+It writes `<span class="c5">` plus a hidden rule saying `.c5` is bold, and it
+renames those classes for every document. So the code reads each document's own
+stylesheet, works out which classes mean bold or italic, and converts them.
+It keys off what the styling *says*, not what the classes are *called*, which
+is why it keeps working.
+
+---
+
 ## Files you can ignore
 
 - `listings-template.csv` — the original blank sheet, kept for reference.
-- `test-data.csv` — deliberately messy rows used to test edge cases.
+- `test-data.csv` — deliberately messy mic rows used to test edge cases.
+- `test-posts.csv` — the same, for blog posts.
 
 Neither is part of the working site.
 
