@@ -1,0 +1,5 @@
+Name,Venue,Address,City,Day,StartTime,SignupTime,SignupMethod,Cost,AgeLimit,Frequency,SetLength,Host,Link,Notes,Type,Active,LastVerified
+Capital Logan,Venue A,"1 Test St, Logan, UT",Logan,Wednesday,7:00 PM,6:30 PM,In person,Free,21+,Weekly,5 min,Host A,https://example.com,City typed with a capital L.,Comedy,TRUE,8/26/26
+Lowercase logan,Venue B,"2 Test Ave, Logan, UT",logan ,wednesday,8:00 PM,7:30 PM,Online,Free,21+,Weekly,5 min,Host B,,City typed lowercase with a trailing space - must NOT create a second Logan.,comedy,Yes,8/26/26
+Ogden Mixed,Beans & Bits,"3 Test Blvd, Ogden, UT",Ogden,Friday,9:00 PM,,,$5,18+,Variety,,,,Blank cells should vanish. Variety = purple.,Variety,TRUE,8/26/26
+Hidden By No,Venue D,"4 Test Way, Ogden, UT",Ogden,Monday,8:00 PM,7:45 PM,In person,Free,21+,Weekly,5 min,Host D,,Must NOT appear.,Comedy,No,8/26/26

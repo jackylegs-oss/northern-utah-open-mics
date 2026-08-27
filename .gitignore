@@ -1,0 +1,5 @@
+# macOS clutter
+.DS_Store
+
+# Local editor/tooling config - points at paths on this machine only
+.claude/

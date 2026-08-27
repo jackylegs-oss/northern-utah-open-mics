@@ -1,0 +1,420 @@
+/* ============================================================
+   NORTHERN UTAH OPEN MICS  -  stylesheet
+   Plain CSS, no framework. Everything is grouped by what part of
+   the page it controls, in the same order the page is built.
+   ============================================================ */
+
+/* ---- 1. COLORS AND FONTS -----------------------------------
+   These are "variables". Change a color here and it changes
+   everywhere on the site. This is the only place you edit colors.
+   ------------------------------------------------------------ */
+:root {
+  --ink:        #17161a;   /* main text */
+  --ink-soft:   #5c5a63;   /* less important text */
+  --paper:      #fbfaf7;   /* page background */
+  --card:       #ffffff;   /* card background */
+  --line:       #e3e0d9;   /* borders */
+  --accent:     #c2410c;   /* the orange - links, buttons, day labels */
+  --warn:       #b91c1c;   /* the red - form mistakes */
+  --accent-ink: #ffffff;   /* text sitting on top of the orange */
+
+  /* Mic type pill colors */
+  --comedy-bg: #c2410c;  --comedy-ink: #ffffff;   /* comedy only */
+  --mixed-bg:  #6d28d9;  --mixed-ink:  #ffffff;   /* comedy + music/poetry */
+  --music-bg:  #0f766e;  --music-ink:  #ffffff;   /* music / poetry, no comedy */
+
+  --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --radius: 10px;
+  --shadow: 0 1px 2px rgba(0,0,0,.05), 0 4px 14px rgba(0,0,0,.04);
+}
+
+/* Same site, dark mode, for people whose phone is set to dark. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink:      #f2f0eb;
+    --ink-soft: #a8a4a0;
+    --paper:    #141317;
+    --card:     #1e1c22;
+    --line:     #34313a;
+    --accent:   #fb923c;
+    --accent-ink: #17161a;
+    --warn:     #f87171;
+    --comedy-bg: #ea580c;  --comedy-ink: #ffffff;
+    --mixed-bg:  #8b5cf6;  --mixed-ink:  #17161a;
+    --music-bg:  #14b8a6;  --music-ink:  #17161a;
+    --shadow: 0 1px 2px rgba(0,0,0,.4);
+  }
+}
+
+/* ---- 2. PAGE BASICS ---------------------------------------- */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* .wrap keeps content from stretching too wide on big screens
+   and adds breathing room on phones. */
+.wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+a { color: var(--accent); }
+
+/* ---- 3. HEADER --------------------------------------------- */
+.site-header {
+  border-bottom: 1px solid var(--line);
+  padding: 44px 0 32px;
+  margin-bottom: 32px;
+}
+
+.site-title {
+  margin: 0;
+  font-size: 2.1rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.site-tagline {
+  margin: 10px 0 0;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+}
+
+/* ---- 4. NEWSLETTER BOX ------------------------------------- */
+.newsletter {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  margin-bottom: 32px;
+}
+
+.newsletter h2 { margin: 0 0 6px; font-size: 1.25rem; }
+
+.newsletter-intro {
+  margin: 0 0 16px;
+  color: var(--ink-soft);
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.newsletter-form input {
+  flex: 1 1 220px;
+  min-width: 0;
+  padding: 11px 13px;
+  font: inherit;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.newsletter-form button {
+  padding: 11px 20px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--accent-ink);
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.newsletter-note {
+  margin: 12px 0 0;
+  font-size: .85rem;
+  color: var(--ink-soft);
+}
+
+/* Shown only when the address typed in is obviously not one. */
+.newsletter-error {
+  margin: 10px 0 0;
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--warn);
+}
+
+.newsletter-form input[aria-invalid="true"] {
+  border-color: var(--warn);
+}
+
+/* ---- 5. FILTER BAR ----------------------------------------- */
+.filters {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1 1 150px;
+}
+
+.filter > span {
+  font-size: .78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--ink-soft);
+}
+
+.filter select,
+.filter input {
+  padding: 9px 11px;
+  font: inherit;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.filter-search { flex: 2 1 240px; }
+
+.filter select:focus,
+.filter input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* The "Showing 2 of 5 mics" line above the results. */
+.result-count {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: -10px 0 18px;
+  font-size: .88rem;
+  color: var(--ink-soft);
+}
+
+.clear-filters {
+  padding: 4px 11px;
+  font: inherit;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.clear-filters:hover {
+  border-color: var(--accent);
+}
+
+/* ---- 6. MIC CARDS ------------------------------------------ */
+.listings {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mic {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+/* The day + time column on the left. */
+.mic-when {
+  flex: 0 0 88px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 2px;
+}
+
+.mic-day {
+  font-weight: 700;
+  font-size: .82rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--accent);
+}
+
+.mic-time {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+/* The main text column. */
+.mic-body { flex: 1 1 auto; min-width: 0; }
+
+.mic-name    { margin: 0 0 3px; font-size: 1.2rem; }
+.mic-venue   { margin: 0; font-weight: 600; }
+.mic-address { margin: 2px 0 12px; color: var(--ink-soft); font-size: .9rem; }
+
+/* The Sign up / Set length / Cost / Ages / Host rows. */
+.mic-facts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 4px 20px;
+  font-size: .92rem;
+}
+
+.mic-facts strong {
+  color: var(--ink-soft);
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+.mic-notes {
+  margin: 12px 0 0;
+  font-size: .92rem;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.mic-links { margin: 12px 0 0; font-size: .92rem; }
+
+/* The pills in the top right: mic type, then how often it runs. */
+.mic-tags {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+  max-width: 45%;
+}
+
+.tag {
+  display: inline-block;
+  padding: 3px 9px;
+  font-size: .72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink-soft);
+}
+
+/* The mic-type pill is filled with color so it reads first. */
+.tag-type {
+  border-color: transparent;
+  color: var(--accent-ink);
+}
+
+.tag-type.type-comedy { background: var(--comedy-bg); color: var(--comedy-ink); }
+.tag-type.type-mixed  { background: var(--mixed-bg);  color: var(--mixed-ink);  }
+.tag-type.type-music  { background: var(--music-bg);  color: var(--music-ink);  }
+.tag-type.type-other  { background: var(--ink-soft);  color: var(--paper);      }
+
+/* ---- 7. MESSAGES IN PLACE OF CARDS -------------------------
+   Shown while loading, when the sheet is empty, or when the
+   sheet can't be reached. Written by directory.js.
+   ------------------------------------------------------------ */
+.notice {
+  background: var(--card);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.notice-headline {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.notice-detail {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: .95rem;
+}
+
+
+/* ---- 8. FOOTER --------------------------------------------- */
+.verified-note {
+  margin: 28px 0 0;
+  font-size: .9rem;
+  color: var(--ink-soft);
+}
+
+.site-footer {
+  margin-top: 56px;
+  padding: 24px 0 40px;
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: .88rem;
+}
+
+.site-footer p { margin: 0; }
+
+/* ---- 9. SMALL SCREENS --------------------------------------
+   Every rule that depends on screen width lives here, at the end,
+   so there is one place to look when something misbehaves on a
+   phone. Later rules win, which is why these come last.
+   ------------------------------------------------------------ */
+
+/* Tablets and small laptops: four filter controls squeezed into one
+   row is too tight, so go two-up. */
+@media (max-width: 700px) {
+  .filter { flex: 1 1 calc(50% - 6px); }
+  .filter-search { flex: 1 1 100%; }
+}
+
+/* Phones: stack the day/time above the mic details instead of
+   beside them. */
+@media (max-width: 600px) {
+  body { font-size: 16px; }
+  .site-title { font-size: 1.7rem; }
+
+  .mic {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* On a narrow screen the pills stop floating in the corner and
+     become a normal row at the top of the card. "order: -1" is what
+     moves them above everything else. This stops a long type name
+     from wrapping onto the day and time. */
+  .mic-tags {
+    position: static;
+    order: -1;
+    max-width: none;
+    justify-content: flex-start;
+    margin-bottom: 2px;
+  }
+
+  .mic-when {
+    /* flex: 0 0 88px above sets the WIDTH of the left column on a wide
+       screen. Once the card stacks, that same 88px would become a
+       HEIGHT and leave a dead gap, so reset it to auto here. */
+    flex: 0 0 auto;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 8px;
+    padding-top: 0;
+  }
+
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Northern Utah Open Mics</title>
+  <meta name="description" content="A directory of open mics — comedy, music, and poetry — in Logan, Ogden, and Salt Lake City, Utah.">
+  <link rel="stylesheet" href="style.css?v=12">
+</head>
+<body>
+
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+  <header class="site-header">
+    <div class="wrap">
+      <h1 class="site-title">Northern Utah Open Mics</h1>
+      <p class="site-tagline">Every open mic from Logan to Salt Lake, in one place.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- ============================================================
+         NEWSLETTER SIGNUP
+         This is our own form, styled to match the site. On submit,
+         directory.js hands the address to Substack with it already
+         filled in, so the reader confirms with one click there.
+         Which Substack it points at is the SUBSTACK setting near
+         the top of directory.js.
+         ============================================================ -->
+    <section class="newsletter" aria-labelledby="newsletter-heading">
+      <h2 id="newsletter-heading">Get the weekly list by email</h2>
+      <p class="newsletter-intro">One email a week: what's running, what changed,
+         what got cancelled.</p>
+      <form class="newsletter-form" id="newsletter-form" novalidate>
+        <input type="email" id="newsletter-email" placeholder="you@email.com"
+               aria-label="Email address" autocomplete="email">
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="newsletter-error" id="newsletter-error" role="alert" hidden></p>
+      <p class="newsletter-note" id="newsletter-note"></p>
+    </section>
+
+    <!-- ============================================================
+         FILTER BAR
+         The dropdowns start empty. directory.js fills them in from
+         whatever is actually in your sheet, so a new city or a new
+         mic type appears here on its own with no code change.
+         ============================================================ -->
+    <section class="filters" aria-label="Filter listings">
+      <label class="filter">
+        <span>City</span>
+        <select id="filter-city">
+          <option value="">All cities</option>
+        </select>
+      </label>
+      <label class="filter">
+        <span>Day</span>
+        <select id="filter-day">
+          <option value="">Any day</option>
+        </select>
+      </label>
+      <label class="filter">
+        <span>Type</span>
+        <select id="filter-type">
+          <option value="">Any type</option>
+        </select>
+      </label>
+      <label class="filter filter-search">
+        <span>Search</span>
+        <input type="search" id="filter-search"
+               placeholder="Venue, host, neighborhood&hellip;">
+      </label>
+    </section>
+
+    <!-- How many mics are showing, plus a reset link. Hidden until
+         directory.js has something to say. -->
+    <p class="result-count" id="result-count" hidden>
+      <span id="result-count-text"></span>
+      <button type="button" id="clear-filters" class="clear-filters" hidden>
+        Clear filters
+      </button>
+    </p>
+
+    <!-- ============================================================
+         THE DIRECTORY
+         This box starts empty. directory.js downloads your Google
+         Sheet and fills it in. If the sheet can't be reached, the
+         script writes an explanation in here instead.
+         ============================================================ -->
+    <section class="listings" id="listings" aria-label="Open mic listings" aria-busy="true">
+      <p class="notice-detail">Loading listings&hellip;</p>
+    </section>
+
+    <p class="verified-note" id="verified-note">
+      All listings are hand-checked.
+    </p>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Northern Utah Open Mics &middot; Logan &middot; Ogden &middot; Salt Lake City</p>
+    </div>
+  </footer>
+
+  <!-- VERSION MARKER. Browsers keep their own copy of style.css and
+       directory.js. Changing this number is what forces them to fetch a
+       fresh one. If you edit either file and the site doesn't change,
+       bump BOTH numbers to the same next number (here and line 8). -->
+  <script src="directory.js?v=12"></script>
+
+</body>
+</html>

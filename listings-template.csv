@@ -1,0 +1,5 @@
+Name,Venue,Address,City,Day,StartTime,SignupTime,SignupMethod,Cost,AgeLimit,Frequency,SetLength,Host,Link,Notes,Type,Active,LastVerified
+EXAMPLE - Monday Night Mic,The Example Tavern,"100 N Main St, Logan, UT 84321",Logan,Monday,8:00 PM,7:30 PM,In person list,Free,21+,Weekly,5 min,Example Host,https://example.com,Replace this row with a real mic.,Comedy,TRUE,2026-08-22
+EXAMPLE - Basement Comedy,Example Coffee House,"200 S 25th St, Ogden, UT 84401",Ogden,Wednesday,7:00 PM,6:30 PM,Online signup,$5,All ages,Weekly,4 min,Example Host,https://example.com,Bring your own mic stand.,Mixed,TRUE,2026-08-22
+EXAMPLE - First Friday Showcase,Example Theater,"300 W 300 S, Salt Lake City, UT 84101",Salt Lake City,Friday,9:00 PM,8:00 PM,Text the host,Free,18+,1st Friday,6 min,Example Host,https://example.com,,Music & poetry,TRUE,2026-08-22
+EXAMPLE - Retired Mic,Example Bar,"400 E Center St, Logan, UT 84321",Logan,Thursday,8:00 PM,7:45 PM,In person list,Free,21+,Weekly,5 min,Example Host,,Set Active to FALSE to hide a mic without deleting it.,Comedy,FALSE,2026-08-22
