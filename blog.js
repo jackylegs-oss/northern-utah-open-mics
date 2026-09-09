@@ -329,8 +329,12 @@ function showSinglePost(posts) {
     return;
   }
 
-  fetch(docUrl)
+  fetch(withCacheBuster(docUrl))
     .then(function (r) {
+      // 401/403 means the Doc exists but isn't published to the web -
+      // by far the most common thing to go wrong, so say so plainly
+      // instead of a vague "couldn't load".
+      if (r.status === 401 || r.status === 403) throw new Error("not published");
       if (!r.ok) throw new Error("Google said " + r.status);
       return r.text();
     })
@@ -343,10 +347,27 @@ function showSinglePost(posts) {
     })
     .catch(function (error) {
       console.error("Could not load the document:", error);
+
+      if (String(error.message) === "not published") {
+        blogMessage("This post's Google Doc isn't published.",
+          "Open the Doc, choose File > Share > Publish to web, and click " +
+          "the Publish button - copying the link from that box is not " +
+          "enough on its own.");
+        return;
+      }
+
       blogMessage("Couldn't load this post.",
-        "The writing lives in a Google Doc and it didn't answer. Check " +
-        "the Doc is still published to the web, then try again.");
+        "The writing lives in a Google Doc and it didn't answer. " +
+        "Try refreshing in a minute.");
     });
+}
+
+/* Google holds its own copy of a published Doc for five minutes, and
+   the browser would hold one for longer. A throwaway number on the end
+   means we always ask for the current version - which matters most
+   right after you publish, or fix a typo. */
+function withCacheBuster(url) {
+  return url + (url.indexOf("?") === -1 ? "?" : "&") + "t=" + Date.now();
 }
 
 /* A headline and an explanation, in whichever box this page has. */
