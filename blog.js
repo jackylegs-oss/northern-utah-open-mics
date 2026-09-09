@@ -348,17 +348,20 @@ function showSinglePost(posts) {
     .catch(function (error) {
       console.error("Could not load the document:", error);
 
-      if (String(error.message) === "not published") {
-        blogMessage("This post's Google Doc isn't published.",
-          "Open the Doc, choose File > Share > Publish to web, and click " +
-          "the Publish button - copying the link from that box is not " +
-          "enough on its own.");
-        return;
-      }
-
+      /* Worth knowing why this is worded the way it is. When a Doc
+         is not published, Google bounces the request to a sign-in
+         page that carries no CORS headers, so the browser blocks it
+         and we get a bare "Failed to fetch" - we never get to see
+         the 401 that a command-line tool would see. A dropped
+         connection looks exactly the same from here. So we cannot
+         tell the two apart, and the message covers both, leading
+         with the far more likely one. */
       blogMessage("Couldn't load this post.",
-        "The writing lives in a Google Doc and it didn't answer. " +
-        "Try refreshing in a minute.");
+        "Most likely its Google Doc isn't published: open the Doc, choose " +
+        "File > Share > Publish to web, and click the Publish button. " +
+        "Copying the link out of that box isn't enough on its own. " +
+        "If it is published, the connection may have dropped - try " +
+        "refreshing.");
     });
 }
 
